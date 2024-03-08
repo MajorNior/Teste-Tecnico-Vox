@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ titulo }}
+{% endblock %}
+
+{% block body %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('styles/tabelas.css') }}">
+	{% endblock %}
+
+	<style>
+		th {
+			border-radius: 0;
+		}
+		.container h1 {
+			margin-right: 835px !important;
+		}
+		td:hover {
+			color: #000;
+			background: #fff;
+		}
+	</style>
+
+	<div class="contantTable">
+
+		<div class="wrap">
+			<form method="get">
+				<div class="search">
+					<input type="text" class="searchTerm" name="nomeSocio" placeholder="Pesquise por um sócio">
+					<button type="submit" class="searchButton">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<a class="btn" href='{{ path('socio_adicionar') }}'>+ Adicionar Novo</a>
+		<a class="btn" style="float: left; margin-left: 140px; background: #0b5ed7;" href="{{ path('app_ver_empresa_socios') }}">Pagina inicial</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nome do Socio</th>
+                    
+                    {# Caso eu queira ver as empresas na tabela dos socios deixar desativado por hora #}
+					{# <th>Empresas</th> #}
+
+					<th style="text-align: center; width: 350px;">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for socio in socios %}
+					<tr>
+						<td>{{ socio.id }}</td>
+						<td>{{ socio.nomeSocio }}</td>
+                        
+                        {# Caso eu queira ver as empresas na tabela dos socios deixar desativado por hora #}
+						{# <td>
+						{% if socio.nomeEmpresa is not empty %}
+						<ul>
+						{% for empresa in socio.nomeEmpresa %}
+						<li>{{ empresa.nomeEmpresa }}</li>
+						{% endfor %}
+						</ul>
+						{% else %}
+						Sem empresa associada
+						{% endif %}
+						</td> #}
+
+						<td>
+							<a href="{{ path('socio_editar', {id: socio.id}) }}" class="btn" style="background-color: #0b5ed7;">Editar</a>
+							<a href="#" class="excluir-link btn" style="background-color: #bb2d3b;" onclick="exibirModalConfirmacao('{{ path('socio_excluir', {'id': socio.id}) }}')">Excluir</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		
+		<div id="confirmacaoExclusao" class="modal" style="display: none;">
+			<div class="modal-content">
+				<p>Tem certeza de que deseja excluir este socio?</p>
+				<form id="formExclusao" method="post" action="">
+					<input type="hidden" name="confirmacao" value="1">
+					<button type="submit" class="btn btn-danger">Excluir</button>
+					<button type="button" class="btn btn-secondary" onclick="fecharModalConfirmacao()">Cancelar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{% for flashMessage in app.flashes('warning') %}
+		<div class="alert alert-warning">
+			{{ flashMessage }}
+		</div>
+	{% endfor %}
+	
+	{{ knp_pagination_render(socios) }}
+
+	{% block javascripts %} <script src="{{ asset('controllers/modalExcluir.js') }}"></script>
+		 <script>
+		document.addEventListener("DOMContentLoaded", function() {
+		if (document.querySelectorAll('.contantTable table tbody tr').length === 0) {
+		setTimeout(function () {
+		window.location.href = '{{ redirectUrl }}';
+		}, 2000);
+		}
+		});
+		</script>
+	{% endblock %}
+
+{% endblock %}

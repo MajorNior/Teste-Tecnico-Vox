@@ -1,0 +1,258 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #456;
+}
+
+.container {
+  background: #d3d3d3;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: -60px;
+}
+
+.container h1 {
+  margin-right: 630px;
+}
+
+.nomeusuario {
+  margin-right: 20px;
+}
+
+.logout {
+  margin-right: 20px;
+  background-color: red;
+  text-decoration: none;
+  padding: 8px 10px 8px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+}
+
+#empresa_form {
+  width: 400px;
+  margin: 100px auto;
+  font-size: 16px;
+  background: #ebebeb;
+  padding: 12px;
+  height: 321px;
+}
+
+#socio_form {
+  width: 400px;
+  margin: 100px auto;
+  font-size: 16px;
+  background: #ebebeb;
+  padding: 12px;
+  height: 400px;
+}
+
+#empresa_form_nome_empresa {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 15px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#socio_form_nomeSocio {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 15px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#empresa_form input[type="text"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+  border-radius: 10px;
+}
+
+#socio_form input[type="text"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+  border-radius: 10px;
+}
+
+#empresa_form input[type="text"]:focus {
+  border-color: #888;
+}
+
+#socio_form input[type="text"]:focus {
+  border-color: #888;
+}
+
+#socio_form_nomeEmpresa {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 15px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#socio_form select {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+  border-radius: 10px;
+}
+
+#socio_form select:focus {
+  border-color: #888;
+}
+
+.required {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#empresa_form_Salvar {
+  box-sizing: border-box;
+  display: block;
+  width: 40%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  margin-top: 148px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  float: right;
+}
+
+#socio_form_Salvar {
+  box-sizing: border-box;
+  display: block;
+  width: 40%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  margin-top: 60px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  float: right;
+}
+
+#empresa_form button[type="submit"] {
+  background: #28d;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+#socio_form button[type="submit"] {
+  background: #28d;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+#empresa_form button[type="submit"]:hover {
+  background: #17c;
+}
+
+#socio_form button[type="submit"]:hover {
+  background: #17c;
+}
+
+#empresa_form button[type="submit"]:focus {
+  border-color: #05a;
+}
+
+#socio_form button[type="submit"]:focus {
+  border-color: #05a;
+}
+
+.alert {
+  text-align: center;
+  background: #16d77d;
+  width: 17%;
+  position: absolute;
+  left: 41%;
+  bottom: 535px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #fff;
+  display: none;
+}
+
+.alert.show {
+  display: block;
+}
+
+.btn-back_empresa {
+  display: block;
+  margin-top: 10px;
+  padding: 18px;
+  background-color: #198754;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  width: 13%;
+  position: relative;
+  left: 37%;
+  bottom: 171px;
+}
+
+.btn-back_socio {
+  display: block;
+  margin-top: 10px;
+  padding: 18px;
+  background-color: #198754;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  width: 13%;
+  position: relative;
+  left: 35%;
+  bottom: 175px;
+}
+
+.btn-back_empresa:hover {
+  background-color: #25c77b;
+}
+
+.btn-back_socio:hover {
+  background-color: #25c77b;
+}
+
+.home {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #fff;
+  background: #0b5ed7;
+  padding: 8px 10px 8px 10px;
+  border-radius: 10px;
+}

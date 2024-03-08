@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('styles/register.css') }}">
+	{% endblock %}
+
+	<div class="register">
+		<div class="register-triangle"></div>
+		<h2 class="register-header">Criar uma nova Conta</h2>
+
+		{{ form_errors(registrationForm) }}
+
+		{{ form_start(registrationForm, {'attr': {'class': 'register-form'}}) }}
+
+		<div class="form-group">
+			{{ form_label(registrationForm.nome, 'Nome', {'label_attr': {'class': 'hidden'}}) }}
+			{{ form_widget(registrationForm.nome, {'attr': {'class': 'register-input', 'placeholder': 'Nome'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(registrationForm.username, 'Nome de Usuário', {'label_attr': {'class': 'hidden'}}) }}
+			{{ form_widget(registrationForm.username, {'attr': {'class': 'register-input', 'placeholder': 'Nome de Usuário'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(registrationForm.plainPassword, 'Senha', {'label_attr': {'class': 'hidden'}}) }}
+			{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'register-input', 'placeholder': 'Senha'}}) }}
+		</div>
+
+		{{ form_row(registrationForm.agreeTerms) }}
+
+		<button type="submit" class="register-button">Register</button>
+		<a class="loginRedirect" href="{{ path('app_login') }}">Fazer login</a>
+		{{ form_end(registrationForm) }}
+	</div>
+{% endblock %}

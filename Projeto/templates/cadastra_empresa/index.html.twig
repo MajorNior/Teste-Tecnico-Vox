@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{titulo}}
+{% endblock %}
+
+{% block body %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('styles/tabelas.css') }}">
+	{% endblock %}
+	<style>
+		th {
+			border-radius: 0;
+		}
+		.container h1 {
+			margin-right: 835px !important;
+		}
+		td:hover {
+			color: #000;
+			background: #fff;
+		}
+	</style>
+
+
+	<div class="contantTable">
+
+		<div class="wrap">
+			<form method="get">
+				<div class="search">
+					<input type="text" class="searchTerm" name="nomeEmpresa" placeholder="Pesquise por uma empresa">
+					<button type="submit" class="searchButton">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<a class="btn" href='{{ path('empresa_adicionar') }}'>+ Adicionar Nova</a>
+		<a class="btn" style="float: left; margin-left: 140px; background: #0b5ed7;" href="{{ path('app_ver_empresa_socios') }}">Pagina inicial</a>
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Num. Cadastro</th>
+					<th>Nome Empresa</th>
+					<th style="text-align: center; width: 350px;">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for empresa in empresas %}
+					<tr>
+						<td>{{ empresa.id }}</td>
+						<td>{{ empresa.nomeEmpresa }}</td>
+						<td>
+							<a href="#" class="btn" style="background-color: #bb2d3b;" onclick="exibirModalConfirmacao('{{ path('empresa_excluir', {'id': empresa.id}) }}')">Excluir</a>
+							<a href="{{ path('empresa_editar', {id: empresa.id}) }}" class="btn" style="background-color: #0b5ed7;">Editar</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+		<div id="confirmacaoExclusao" class="modal">
+			<div class="modal-content">
+				<p>Tem certeza de que deseja excluir esta empresa?</p>
+				<form id="formExclusao" method="post" action="">
+					<button type="submit" class="btn btn-danger">Excluir</button>
+					<input type="hidden" name="confirmacao" value="1">
+					<button type="button" class="btn btn-secondary" onclick="fecharModalConfirmacao()">Cancelar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{% for flashMessage in app.flashes('warning') %}
+		<div class="alert alert-warning">
+			{{ flashMessage }}
+		</div>
+	{% endfor %}
+	{{ knp_pagination_render(empresas) }}
+</div>
+{% block javascripts %} <script src="{{ asset('controllers/modalExcluir.js') }}"></script>
+	 <script>
+	document.addEventListener("DOMContentLoaded", function() {
+	if (document.querySelectorAll('.contantTable table tbody tr').length === 0) {
+	setTimeout(function () {
+	window.location.href = '{{ redirectUrl }}';
+	}, 2000);
+	}
+	});
+	</script>
+{% endblock %}{% endblock %}

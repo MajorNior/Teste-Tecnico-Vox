@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ titulo }}
+{% endblock %}
+
+{% block body %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+	{% endblock %}
+	<div class="form-container">
+		{{ form(form) }}
+			<p class="alert{% if msg %} show{% endif %}" id="successAlert">{{ msg }}</p>
+			<a href="{{ path('app_cadastro_socio') }}" class="btn-back_socio">Voltar à Tabela</a>
+
+
+		</div>
+
+		 <script>
+		
+		document.addEventListener("DOMContentLoaded", function() {
+		var successAlert = document.getElementById('successAlert');
+		var formSubmitted = document.body.classList.contains('form-submitted');
+		
+		if (formSubmitted) {
+		successAlert.classList.add('show');
+		}
+		});
+		</script>
+
+	{% endblock %}

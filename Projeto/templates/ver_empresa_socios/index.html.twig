@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ titulo }}
+{% endblock %}
+
+{% block body %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('styles/tabelas.css') }}">
+	{% endblock %}
+
+	<div class="contantTable">
+
+		<div class="wrap{% if userRole == 'ROLE_ADMIN' %} admin-wrap{% elseif userRole == 'ROLE_USER' %} user-wrap{% endif %}">
+			<form method="get">
+				<div class="search">
+					<input type="text" class="searchTerm" name="nomeEmpresa" placeholder="Pesquise por uma empresa">
+					<button type="submit" class="searchButton">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+
+		{% if is_granted("ROLE_ADMIN") %}
+			<a class="btn" href='{{ path('app_cadastra_empresa') }}'>Empresa</a>
+			<a class="btn" href='{{ path('app_cadastro_socio') }}'>Sócio</a>
+		{% endif %}
+		<a class="btn" href="{{ path('api_pdf') }}">Gerar PDF</a>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Todos os cadastros</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for empresa in empresas %}
+					<tr>
+						<td>
+							<input type="checkbox" id="company{{ empresa.id }}" class="expand-checkbox">
+							<label for="company{{ empresa.id }}">{{ empresa.getNomeEmpresa() }}</label>
+							<div class="expandable-row">
+								{% if empresa.getNomeSocio().isEmpty() %}
+									<p>Nenhum sócio vinculado</p>
+								{% else %}
+									<ul class="socios-list">
+										{% for socio in empresa.getNomeSocio() %}
+											<li>{{ socio.getNomeSocio() }}</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{% for flashMessage in app.flashes('warning') %}
+			<div class="alert alert-warning">
+				{{ flashMessage }}
+			</div>
+		{% endfor %}
+		{{ knp_pagination_render(empresas) }}
+	</div>
+
+
+	 <script src="{{ asset('controllers/tabelas.js') }}"></script>
+	 <script>
+	document.addEventListener("DOMContentLoaded", function() {
+	if (document.querySelectorAll('.contantTable table tbody tr').length === 0) {
+	setTimeout(function () {
+	window.location.href = '{{ redirectUrl }}';
+	}, 2000);
+	}
+	});
+	</script>
+
+{% endblock %}

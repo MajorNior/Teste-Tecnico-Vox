@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login
+{% endblock %}
+
+{% block body %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+	{% endblock %}
+
+	<div>
+		{%  if erro %}
+			<div>{{ erro.messageKey|trans(erro.messageData, 'security') }}</div>
+		{% endif %}
+
+		<div class="login">
+			<div class="login-triangle"></div>
+
+			<h2 class="login-header">Login</h2>
+
+			<form action="{{ path('login') }}" method="POST" class="login-container">
+				<input type='hidden' name='_target_path' value='/'/>
+
+
+				<p><input type='text' id='username' name='_username' value='{{Username}}' placeholder="Usuario"></p>
+
+
+				<p><input type='password' id='senha' name='_password' placeholder="Senha"></p>
+
+				<p>
+					<button type='submit'>Entrar</button>
+				</p>
+
+				<a class="registra" href="{{ path('app_register') }}">Faça seu Cadastro</a>
+			</form>
+		</div>
+
+	{% endblock %}

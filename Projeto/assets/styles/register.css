@@ -1,0 +1,125 @@
+body {
+    background: #456;
+}
+
+.register {
+    width: 400px;
+    margin: 100px auto;
+    font-size: 16px;
+}
+
+.register-triangle {
+    width: 0;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0px;
+    border: 12px solid transparent;
+    border-bottom-color: #28d;
+}
+
+.register-header {
+    background: #28d;
+    padding: 20px;
+    font-size: 1.4em;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.register-form {
+    background: #ebebeb;
+    padding: 12px;
+    height: 400px;
+}
+
+.register-form {
+    background: #ebebeb;
+    padding: 12px;
+}
+
+.register-input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    padding: 20px;
+    margin-top: 20px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+.register-form button {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    padding: 16px;
+    margin-top: 15px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.register input[type="text"],
+.register input[type="password"],
+#registration_form_agreeTerms[type=checkbox] {
+    background: #fff;
+    border-color: #bbb;
+    color: #555;
+}
+
+.register input[type="text"]:focus,
+.register input[type="password"]:focus,
+#registration_form_agreeTerms[type=checkbox] {
+    border-color: #888;
+}
+
+.register button[type="submit"] {
+    background: #28d;
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.register button[type="submit"]:hover {
+    background: #17c;
+}
+
+.register button[type="submit"]:focus {
+    border-color: #05a;
+}
+
+.register a {
+    float: right;
+    box-sizing: border-box;
+    display: block;
+    width: 30%;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px;
+    margin-top: 10px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    background: #28d;
+    color: #fff;
+}
+
+#registration_form_agreeTerms {
+    margin-top: 10px;
+    width: 20px;
+    position: relative;
+    top: 2px;
+}

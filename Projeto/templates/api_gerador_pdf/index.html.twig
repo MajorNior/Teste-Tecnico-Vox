@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Relatório PDF</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				font-size: 14px;
+				color: #333;
+			}
+			h1 {
+				color: #007bff;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 20px;
+			}
+			th,
+			td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: left;
+			}
+			.empresas {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Relatório de Sócios e Empresas</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Nome do Sócio</th>
+					<th>Empresas que cada socio faz parte</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for socio in data.socios %}
+					<tr>
+						<td>{{ socio.nomeSocio }}</td>
+						<td>
+							{% if socio.nomeEmpresa is not empty %}
+								{% for empresa in socio.nomeEmpresa %}
+									{{ empresa.nomeEmpresa }}
+									{% if not loop.last %},
+									{% endif %}
+								{% endfor %}
+							{% else %}
+								Sem empresa associada
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

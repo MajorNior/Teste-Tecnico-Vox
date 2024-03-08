@@ -1,0 +1,17 @@
+controllers:
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
+
+login:
+  path: /login
+  controller: App\Controller\LoginController::index
+
+app_logout:
+  path: /logout
+  controller: GET
+
+api_pdf:
+  path: /api/pdf
+  controller: App\Controller\ApiGeradorPDFController::generatePdf
